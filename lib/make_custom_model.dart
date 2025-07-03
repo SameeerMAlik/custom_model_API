@@ -12,11 +12,16 @@ class MakeCustomModel extends StatefulWidget {
 
 class _MakeCustomModelState extends State<MakeCustomModel> {
   List<Photos> photosList =[];//make list of photos
-  
+
+
   
 Future<List<Photos>> getPhotos()async{
   
-  final response =await http.get(Uri.parse('https://jsonplaceholder.typicode.com/photos'));//get photos from api
+  final response =await http.get(Uri.parse('https://jsonplaceholder.typicode.com/photos'),
+
+    headers: {//make header for api to access the api data from internet to emulator
+      'Accept': 'application/json',
+    },);//get photos from api
   var data = jsonDecode(response.body.toString());//decode json data from api and store in data variable
 
 
@@ -41,7 +46,7 @@ Future<List<Photos>> getPhotos()async{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Custom Model Api'),
+        title: Text('Custom Models Api'),
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
@@ -49,11 +54,13 @@ Future<List<Photos>> getPhotos()async{
       Column(
         children: [
           Expanded(
-            child: FutureBuilder(
+            // child: FutureBuilder<List<Photos>>(we can also use this
+            child: FutureBuilder<List<Photos>>(//future builder is used to fetch data from api
               future: getPhotos(),
               //he snapshot is an object that contains the current state of the asynchronous operation — like fetching data from an API.
-              //it contain all data from list now use it instead of photosList
-                builder: (context, AsyncSnapshot<List<Photos>> snapshot) {
+              //it contain all data from list now we can use it instead of photosList
+              //   builder: (context, AsyncSnapshot<List<Photos>> snapshot) {can also use this
+                builder: (context,  snapshot) {
                 if (snapshot.hasData == false) {
                   return Center(child: CircularProgressIndicator());
                 }
