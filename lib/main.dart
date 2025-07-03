@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rest_api/home_screen.dart';
 import 'package:rest_api/make_custom_model.dart';
+import 'package:rest_api/user_model_example.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home:  MakeCustomModel(),
+      home:  UserModelApi(),
     );
   }
 }

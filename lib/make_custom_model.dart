@@ -46,7 +46,7 @@ Future<List<Photos>> getPhotos()async{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Custom Models Api'),
+        title: Text('Custom Model Api'),
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
